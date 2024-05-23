@@ -3,7 +3,7 @@ import { getContentsData } from "./ContentsApi";
 
 
 // initial stats
-const initialStats = {
+const initialState = {
     data: [],
     isLoading: false,
     isError: false,
@@ -11,14 +11,14 @@ const initialStats = {
 }
 
 // create thank
-const fetchData = createAsyncThunk('contents/fetchData', async ()=> {
+export const fetchData = createAsyncThunk('contents/fetchData', async ()=> {
     const  data = await getContentsData()
-    return data;
+    return data
 })
 
 const contentsDataSlice = createSlice({
     name: 'contents',
-    initialStats,
+    initialState,
     extraReducers: (builder)=> {
         builder
         .addCase(fetchData.pending, (state)=> {
